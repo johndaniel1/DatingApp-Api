@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs/DatingApp/v15
+/Angular
+/DatingApp/bin
+/DatingApp/obj/Debug
+/packages
+/DatingApp/Areas/HelpPage/Views
+/DatingApp/Areas/HelpPage/SampleGeneration
+/DatingApp/Areas/HelpPage/ModelDescriptions
