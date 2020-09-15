@@ -8,10 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Mvc;
+using System.Security.Claims;
 
 namespace DatingApp.Controllers
 {
+    [System.Web.Http.Authorize]
     public class ValuesController : ApiController
     {
         private readonly DataContext _context;
@@ -33,6 +34,7 @@ namespace DatingApp.Controllers
         }
 
         // GET api/values/5
+        [System.Web.Http.AllowAnonymous]
         public IHttpActionResult GetValue(int id)
         {
             Values value = _context.Values.FirstOrDefault(x => x.Id == id);
