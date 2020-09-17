@@ -1,17 +1,14 @@
 ﻿using DatingApp.Data;
 using DatingApp.Dtos;
 using DatingApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Web.Http;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
+using System;
 using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security.Claims;
+using System.Text;
+using System.Web.Http;
 
 namespace DatingApp.Controllers
 {
@@ -32,6 +29,10 @@ namespace DatingApp.Controllers
         [HttpPost]
         public IHttpActionResult Register(UserForRegisterDto userForRegisterDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
             if ( _repo.UserExists(userForRegisterDto.Username))
@@ -44,7 +45,7 @@ namespace DatingApp.Controllers
 
             User createdUser = _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return Content(HttpStatusCode.Created, createdUser.Username);
+            return Content(HttpStatusCode.Created, "User Created Successfully");
         }
 
         [HttpPost]
